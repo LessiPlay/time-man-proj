@@ -1,1 +1,2 @@
-# time-man-proj
+# Frontend
+## Реализация html+css и Python Django
