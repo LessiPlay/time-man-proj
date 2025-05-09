@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="homepage"> <!-- Основной контейнер страницы -->
+
+    <!-- Верхняя панель -->
+    <div class="top-bar">
+      <div class="search-container"> <!-- Контейнер для поиска -->
+        <input class="search-input" placeholder="Поиск задач..."> <!-- Поле ввода для поиска задач -->
+      </div>
+    </div>
+
+    <!-- Список задач -->
+    <div class="task-list">
+      <div class="task-card"> <!-- Каждая карточка задачи -->
+        <div class="task-title">Сделать отчёт</div> <!-- Название задачи -->
+        <div class="task-progress">Прогресс: 60%</div> <!-- Прогресс задачи -->
+        <div class="task-deadline">До: 12 мая</div> <!-- Срок выполнения задачи -->
+        <button class="complete-button">Завершить</button> <!-- Кнопка для завершения задачи -->
+      </div>
+      <!-- Здесь могут быть другие карточки задач (task-card) -->
+    </div>
+
+    <!-- Нижние кнопки -->
+    <div class="bottom-buttons">
+      <button class="bottom-button">
+        <img src="{% static 'img/svg/calendar_icon1.svg' %}" alt="Календарь"> <!-- Иконка календаря -->
+      </button>
+      <button class="add-button">+</button> <!-- Кнопка добавления новой задачи -->
+      <button class="bottom-button">
+        <img src="{% static 'img/svg/document_icon1.svg' %}" alt="Информация"> <!-- Иконка документа -->
+      </button>
+    </div>
+
+  </div>
+{% endblock %}
