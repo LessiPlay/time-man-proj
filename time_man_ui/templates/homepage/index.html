@@ -5,6 +5,7 @@
 {% block title %}Главная{% endblock %}
 
 {% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
   <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 {% endblock %}
 
@@ -14,16 +15,22 @@
     <!-- Верхняя панель -->
     <div class="top-bar">
       <div class="search-container"> <!-- Контейнер для поиска -->
-        <input class="search-input" placeholder="Поиск задач..."> <!-- Поле ввода для поиска задач -->
+        <input class="search-input" placeholder="Поиск задачи"> <!-- Поле ввода для поиска задач -->
       </div>
     </div>
 
     <!-- Список задач -->
     <div class="task-list">
       <div class="task-card"> <!-- Каждая карточка задачи -->
-        <div class="task-title">Сделать отчёт</div> <!-- Название задачи -->
-        <div class="task-progress">Прогресс: 60%</div> <!-- Прогресс задачи -->
-        <div class="task-deadline">До: 12 мая</div> <!-- Срок выполнения задачи -->
+        <div class="task-title">Задача 2</div> <!-- Название задачи -->
+        <div class="task-progress">23%</div> <!-- Прогресс задачи -->
+        <div class="task-deadline">до 23.05.2025</div> <!-- Срок выполнения задачи -->
+        <button class="complete-button">Завершить</button> <!-- Кнопка для завершения задачи -->
+      </div>
+      <div class="task-card"> <!-- Каждая карточка задачи -->
+        <div class="task-title">Задача 1</div> <!-- Название задачи -->
+        <div class="task-progress">50%</div> <!-- Прогресс задачи -->
+        <div class="task-deadline">до 05.05.2025</div> <!-- Срок выполнения задачи -->
         <button class="complete-button">Завершить</button> <!-- Кнопка для завершения задачи -->
       </div>
       <!-- Здесь могут быть другие карточки задач (task-card) -->
@@ -32,11 +39,11 @@
     <!-- Нижние кнопки -->
     <div class="bottom-buttons">
       <button class="bottom-button">
-        <img src="{% static 'img/svg/calendar_icon1.svg' %}" alt="Календарь"> <!-- Иконка календаря -->
+        <img src="{% static 'img/svg/calendar_icon.svg' %}" alt="Календарь"> <!-- Иконка календаря -->
       </button>
       <button class="add-button">+</button> <!-- Кнопка добавления новой задачи -->
       <button class="bottom-button">
-        <img src="{% static 'img/svg/document_icon1.svg' %}" alt="Информация"> <!-- Иконка документа -->
+        <img src="{% static 'img/svg/document_icon.svg' %}" alt="Информация"> <!-- Иконка документа -->
       </button>
     </div>
 
