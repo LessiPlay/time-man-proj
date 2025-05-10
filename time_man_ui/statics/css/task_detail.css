@@ -1,0 +1,154 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.4); /* уменьшил плотность */
+  backdrop-filter: blur(8px); /* размытие */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.task-modal {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  background: rgb(70, 70, 70);
+  border: 2px solid white;
+  display: flex;
+  z-index: 100;
+  flex-direction: column;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.modal-wrapper {
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: -60px;
+  right: -6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 200;
+  padding: 0;
+}
+
+.modal-close img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.modal-header {
+  background: rgb(88, 77, 165);
+  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.25);
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: white;
+  flex: 1;
+}
+
+.modal-settings {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal-settings img {
+  width: 22px;
+  height: 22px;
+  display: block;
+  filter: invert(0);
+}
+
+.modal-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  overflow-y: auto;
+}
+
+.modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(174, 174, 178, 1);
+}
+
+.section-value {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  background: transparent;
+}
+
+.modal-comment .comment-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: white;
+  background: transparent;
+  padding: 8px 0;
+  overflow-y: auto;
+  max-height: 150px;
+  white-space: normal; 
+}
+
+/* Процент выполнения */
+.modal-progress .section-label {
+  margin-bottom: 8px;
+}
+
+.modal-progress .progress-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.progress-value {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: white;
+  background: transparent;
+}
+
+.progress-bar {
+  flex-grow: 1;
+  height: 5px;
+  background: rgb(232, 234, 236);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: rgb(89, 69, 237);
+}

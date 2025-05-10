@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Описание задачи "{{ task.name }}"{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/task_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div id="task-modal" class="modal-overlay">  
+
+    <div class="modal-wrapper">
+      <!-- Кнопка закрытия, перед окном -->
+      <button class="modal-close" aria-label="Закрыть">
+        <a href="{% url 'homepage:index' %}"><img src="{% static 'img/svg/close_icon.svg' %}" alt="Закрыть"></a>
+      </button>
+
+      <div class="task-modal">
+
+        <!-- Заголовок -->
+        <div class="modal-header">
+          <h2 class="modal-title">{{ task.name }}</h2>
+          <button class="modal-settings" aria-label="Редактировать">
+            <img src="{% static 'img/svg/settings_but_icon.svg' %}" alt="Редактировать">
+          </button>
+        </div>
+
+        <!-- Тело окна -->
+        <div class="modal-body">
+
+          <!-- Оптимальный срок -->
+          <div class="modal-section">
+            <div class="section-label">Оптимальный срок</div>
+            <div class="section-value">{{ task.optimal_deadline }}</div>
+          </div>
+
+          <!-- Крайний срок -->
+          <div class="modal-section">
+            <div class="section-label">Крайний срок</div>
+            <div class="section-value">{{ task.hard_deadline }}</div>
+          </div>
+
+          <!-- Комментарий -->
+          <div class="modal-section modal-comment">
+            <div class="section-label">Комментарий</div>
+            <div class="comment-text">{{ task.text|linebreaksbr }}</div>
+          </div>
+
+          <!-- Процент выполнения -->
+          <div class="modal-section modal-progress">
+            <div class="section-label">Процент выполнения</div>
+            <div class="progress-row">
+              <div class="progress-value">{{ task.percent }}%</div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:{{ task.percent }}%;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
