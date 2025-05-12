@@ -108,3 +108,9 @@ def showTaskDetail(request, task_id):
     template = 'homepage/task_detail.html'
     context = {'task': task_list[task_id]}
     return render(request, template, context)
+
+
+def showTaskEditing(request, task_id):
+    template = 'homepage/task_editing.html'
+    context = {'task': task_list[task_id]}
+    return render(request, template, context)

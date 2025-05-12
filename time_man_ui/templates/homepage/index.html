@@ -24,7 +24,7 @@
       {% for task in tasks %}
         <a href="{% url 'homepage:task_detail' task.id %}" class="task-card"> <!-- Каждая карточка задачи -->
           <div class="task-title">{{ task.name }}</div> <!-- Название задачи -->
-          <div class="task-progress">{{ task.percent }}</div> <!-- Прогресс задачи -->
+          <div class="task-progress">{{ task.percent }}%</div> <!-- Прогресс задачи -->
           <div class="task-deadline">до {{ task.hard_deadline }}</div> <!-- Срок выполнения задачи -->
           <button class="complete-button">Завершить</button> <!-- Кнопка для завершения задачи -->
         </a>

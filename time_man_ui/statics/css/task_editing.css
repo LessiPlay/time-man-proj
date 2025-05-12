@@ -1,0 +1,219 @@
+/* Затемнённый фон модального окна */
+.modal-overlay {
+  position: fixed;                        /* фиксируется поверх всего экрана */
+  inset: 0;                               /* растягивается на весь экран */
+  background: rgba(18, 18, 18, 0.4);      /* полупрозрачный тёмный фон */
+  backdrop-filter: blur(8px);             /* размытие подложки */
+  display: flex;                          /* используем flex для центрирования */
+  justify-content: center;               /* по горизонтали по центру */
+  align-items: center;                   /* по вертикали по центру */
+  padding: 20px;                          /* отступы от краёв экрана */
+  box-sizing: border-box;                /* padding входит в размер */
+  z-index: 100;                           /* располагается выше остального интерфейса */
+}
+
+/* Само модальное окно */
+.task-modal {
+  position: relative;                     /* относительно для вложенных элементов */
+  width: 370px;                           /* фиксированная ширина */
+  min-height: 500px;                      /* минимально допустимая высота */
+  max-height: 620px;                      /* ограничение по максимальной высоте */
+  background: rgb(70, 70, 70);            /* тёмный фон */
+  border: 2px solid white;                /* белая рамка */
+  display: flex;                          /* вертикальный flex-контейнер */
+  flex-direction: column;                /* элементы располагаются сверху вниз */
+  overflow: hidden;                      /* обрезаем выходящие за пределы элементы */
+  box-sizing: border-box;                /* учитываем padding и border в размерах */
+}
+
+/* Обёртка с кнопками */
+.modal-wrapper {
+  position: relative;                     /* используется для позиционирования кнопок */
+}
+
+/* Кнопка закрытия (крестик) */
+.modal-close {
+  position: absolute;                     /* абсолютное позиционирование */
+  top: -60px;                             /* вынесена вверх за пределы окна */
+  right: -6px;                            /* немного смещена вправо */
+  background: none;                       /* убираем фон */
+  border: none;                           /* убираем границу */
+  cursor: pointer;                        /* курсор — палец */
+  z-index: 200;                           /* поверх модального окна */
+  padding: 0;
+}
+
+.modal-close img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);        /* инверсия — иконка становится белой */
+}
+
+/* Заголовок модального окна */
+.modal-header {
+  display: flex;                          /* элементы в строку */
+  align-items: center;                    /* по центру по вертикали */
+  padding: 16px;                          /* внутренние отступы */
+  background: rgb(88, 77, 165);           /* фоновый цвет шапки */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); /* лёгкая тень */
+}
+
+/* Поле ввода заголовка задачи */
+.edit-title {
+  flex: 1;                                /* занимает всё свободное пространство */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 4px 8px;
+  border: none;                           /* без границы */
+  border-radius: 4px;                     /* немного скруглённые края */
+  margin-right: 8px;                      /* отступ от кнопки сохранения */
+}
+
+/* Кнопка сохранения заголовка */
+.btn-save {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-save img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);        /* белая иконка */
+}
+
+/* Основная прокручиваемая часть модального окна */
+.modal-body {
+  flex-grow: 1;                           /* занимает всё оставшееся место */
+  overflow-y: auto;                       /* вертикальная прокрутка */
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;                              /* расстояние между блоками */
+  scrollbar-width: thin;                  /* тонкий скроллбар для Firefox */
+  scrollbar-color: rgba(255,255,255,0.6) rgba(255,255,255,0.1);
+  padding: 16px 16px 48px 16px;           /* нижний padding увеличен для кнопки удаления */
+}
+
+/* Общий контейнер для label + input */
+.modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Названия секций (label) */
+.section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(174, 174, 178, 1);          /* светло-серый цвет */
+}
+
+/* Общий стиль для input и select */
+.section-input {
+  padding: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  border: 1px solid rgb(113, 113, 113);
+  border-radius: 10px;
+  background: rgb(50, 50, 50);           /* тёмный фон поля */
+  color: white;
+}
+
+/* Поле для комментария (textarea) */
+.comment-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid rgb(113, 113, 113);
+  border-radius: 10px;
+  background: rgb(50, 50, 50);
+  color: white;
+  resize: vertical;                      /* только вертикальное изменение размера */
+  min-height: 30px;                      /* минимально допустимая высота */
+  max-height: 140px;                     /* ограничение по высоте */
+  overflow-y: auto;                      /* появляется скролл при переполнении */
+}
+
+/* Секция прогресса */
+.modal-progress .progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Числовое значение прогресса */
+.progress-value {
+  width: 60px;
+  padding: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: right;
+  border: 1px solid rgb(113, 113, 113);
+  border-radius: 10px;
+  background: rgb(50, 50, 50);
+  color: white;
+}
+
+/* Полоса прогресса (фон) */
+.progress-bar {
+  flex-grow: 1;
+  height: 6px;
+  background: rgb(113, 113, 113);        /* серый фон полосы */
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* Заполнение прогресс-бара */
+.progress-fill {
+  height: 100%;
+  background: rgb(89, 69, 237);          /* синий цвет заливки */
+}
+
+/* Секция уведомлений */
+.modal-notifications .section-input {
+  width: 100%;                           /* поле занимает всю доступную ширину */
+}
+
+/* Кнопка удаления задачи (внизу) */
+.btn-delete {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;                    /* приклеивается к нижнему правому краю */
+  bottom: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-delete img {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);       /* белая иконка */
+}
+
+/* Кастомные скроллбары для WebKit */
+.modal-body::-webkit-scrollbar,
+.comment-text::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track,
+.comment-text::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb,
+.comment-text::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 4px;
+}

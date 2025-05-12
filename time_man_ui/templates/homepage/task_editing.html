@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Редактирование задачи "{{ task.name }}"{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/task_editing.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="modal-overlay">
+
+    <div class="modal-wrapper">
+      {# Кнопка закрытия возвращает на список #}
+      <button class="modal-close" aria-label="Закрыть">
+        <a href="{% url 'homepage:index' %}">
+          <img src="{% static 'img/svg/close_icon.svg' %}" alt="Закрыть">
+        </a>
+      </button>
+
+      <div class="task-modal">
+        {# Заголовок + кнопка сохранения #}
+        <div class="modal-header">
+          <input class="edit-title" type="text" value="{{ task.name }}">
+          <button class="btn-save" aria-label="Сохранить">
+            <img src="{% static 'img/svg/made_icon.svg' %}" alt="Сохранить">
+          </button>
+        </div>
+
+        <div class="modal-body">
+          {# Оптимальный срок #}
+          <div class="modal-section">
+            <label class="section-label" for="optimal">Оптимальный срок</label>
+            <input id="optimal"
+                   class="section-input"
+                   type="date"
+                   value="{{ task.optimal_deadline }}">
+          </div>
+
+          {# Крайний срок #}
+          <div class="modal-section">
+            <label class="section-label" for="hard">Крайний срок</label>
+            <input id="hard"
+                   class="section-input"
+                   type="date"
+                   value="{{ task.hard_deadline }}">
+          </div>
+
+          {# Комментарий #}
+          <div class="modal-section modal-comment">
+            <label class="section-label" for="comment">Комментарий</label>
+            <textarea id="comment"
+                      class="comment-text"
+                      rows="4">{{ task.text }}</textarea>
+          </div>
+
+          {# Процент выполнения #}
+          <div class="modal-section modal-progress">
+            <label class="section-label">Процент выполнения</label>
+            <div class="progress-row">
+              <input class="progress-value" type="number"
+                     min="0" max="100"
+                     value="{{ task.percent }}">
+              <div class="progress-bar">
+                <div class="progress-fill"
+                     style="width:{{ task.percent }}%;"></div>
+              </div>
+            </div>
+          </div>
+
+          {# Раздел уведомлений #}
+          <div class="modal-section modal-notifications">
+            <label class="section-label" for="notifications">Уведомления</label>
+            <select id="notifications" class="section-input">
+              <option value="none" {% if not task.notify %}selected{% endif %}>
+                Не уведомлять
+              </option>
+              <option value="daily" {% if task.notify == 'daily' %}selected{% endif %}>
+                Ежедневно
+              </option>
+              <option value="weekly" {% if task.notify == 'weekly' %}selected{% endif %}>
+                Еженедельно
+              </option>
+            </select>
+          </div>
+        </div>
+
+        {# Кнопка удаления внизу справа #}
+        <button class="btn-delete" aria-label="Удалить">
+          <img src="{% static 'img/svg/delete_icon.svg' %}" alt="Удалить">
+        </button>
+      </div>
+    </div>
+  </div>
+{% endblock %}

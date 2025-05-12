@@ -24,7 +24,9 @@
         <div class="modal-header">
           <h2 class="modal-title">{{ task.name }}</h2>
           <button class="modal-settings" aria-label="Редактировать">
-            <img src="{% static 'img/svg/settings_but_icon.svg' %}" alt="Редактировать">
+            <a href="{% url 'homepage:task_editing' task.id %}">
+              <img src="{% static 'img/svg/settings_but_icon.svg' %}" alt="Редактировать">
+            </a>
           </button>
         </div>
 
